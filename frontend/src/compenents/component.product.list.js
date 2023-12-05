@@ -23,7 +23,7 @@ export function ProductList(){
     }
 
   return (
-    <div className="d-flex gap-4 flex-column vh-100 p-5">  
+    <div className="d-flex gap-4 flex-column vh-100 p-5 w-100">  
       <h1 className="text-start w-100">List Des Produits</h1>
       <div className="table-wrapper">
         <table class="table">

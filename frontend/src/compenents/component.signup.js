@@ -58,7 +58,7 @@ const Signup = () => {
 
                                 <div class="d-flex justify-content-center">
                                 <button type="submit"
-                                    class="btn btn-outline-warning btn-block btn-lg gradient-custom-4">Register</button>
+                                    class="btn btn-outline-light btn-block btn-lg gradient-custom-4">Register</button>
                                 </div>
 
                                 <p class="text-center mt-5 mb-0 text-white">Have already an account? <a href="/"
