@@ -1,8 +1,8 @@
-const Product = require('../models/Product');
+const catalogueService = require("../services/catalogue.service")
 
 async function getAllProducts(req,res){
     try{
-        const products = await Product.find().populate("category"); 
+        const products = await catalogueService.getAllProducts(); 
         res.status(200).json(products);
     }catch(error){
         
@@ -12,19 +12,17 @@ async function getAllProducts(req,res){
 
 async function getProductById(req,res){
     const idP=req.params.id;
-    console.log(idP)
     try{
-        const product= await Product.findById(idP).populate("category");
+        const product= await catalogueService.getProductById(idp);
         res.status(200).json(product);
     }catch(error){
         res.status(500).send('error dans le serveur');
     }
 }
 
-//Await toujours avec fct asynchrone 
 async function addProduct(req,res){
     try{
-        const product = await Product.create(req.body);
+        const product = await catalogueService.addProduct(req.body);
         res.status(201).json(product);
     }catch(error){
         res.status(500).send('error d ajout');
@@ -33,9 +31,9 @@ async function addProduct(req,res){
 
 
 async function deleteProductById(req,res){
-    const idp=req.params.id;
+    const idp = req.params.id;
     try{
-        const product = await Product.findByIdAndRemove(idp);
+        const product = await catalogueService.deleteProductById(idp);
         res.status(200).json(product);
     }catch(error){
         console.log(error)
@@ -45,9 +43,15 @@ async function deleteProductById(req,res){
 
 
 async function updateProduct(req,res){
-    const idp=req.params.id;
-    await Product.findByIdAndUpdate(idp,req.body);
+    const idp = req.params.id;
+    await catalogueService.updateProduct(idp, req.body);
     res.json("Le produit a été bien modifié");
 }
 
-module.exports={getAllProducts,getProductById,addProduct,deleteProductById,updateProduct};
+module.exports = {
+    getAllProducts,
+    getProductById,
+    addProduct,
+    deleteProductById,
+    updateProduct
+}

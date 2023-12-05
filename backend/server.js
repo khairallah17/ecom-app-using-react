@@ -3,6 +3,7 @@ const cors = require("cors");
 const productrouter = require("./routes/products.routes")
 const mongoose = require('mongoose');
 const categoriesRouter = require("./routes/category.routes")
+const loginRouter = require("./routes/login.routes")
 require('dotenv').config()
 
 const app = express();
@@ -14,7 +15,7 @@ app.use(express.urlencoded());
 app.use(express.json());
 app.use("/products",productrouter);
 app.use("/categories", categoriesRouter)
-
+app.use("/user", loginRouter)
 
 mongoose.connect(process.env.DB_URL)
 .then(result=>app.listen(PORT,()=>console.log(`Server running on port ${PORT}💥💥💥💥`)))
